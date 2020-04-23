@@ -1,4 +1,7 @@
 package main.java;
+
+import java.util.Random;
+
 /**
  * This class serves as an abstract class, from which instance variables and methods are inherited.
  * @author kelseycloud
@@ -92,7 +95,7 @@ public abstract class Animal {
      */
     private void setQuality() {
         while (quality < 1) {
-            quality = Math.random()*10;
+            quality = new Random().nextInt(10);
         }
     }
 }

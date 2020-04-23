@@ -1,6 +1,6 @@
 package main.java;
 
-//Strategy design pattern
+//Implementation of strategy design pattern
 public interface Produces {
 
     public String produces();

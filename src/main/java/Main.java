@@ -9,33 +9,32 @@ import java.util.ArrayList;
  *
  */
 public class Main {
-
-    public static int days = 0;
-    public static boolean isNight = true;
-    public static boolean isDay = false;
-    
-    public static boolean isGameOver = false;
-    
-    
-    public static ArrayList<Farm> farms = new ArrayList<Farm>();
     
     public static void main(String[] args) {
+        int days = 0;
+        boolean isNight = true;
+        boolean isDay = false;
+        
+        boolean isGameOver = false;
+        
+        ArrayList<Farm> farms = new ArrayList<Farm>();
+
         while (!isGameOver) {
             isDay = true;
             isNight = false;
             
             //TODO: implement stuff
             
-            isGameOver();
+            isGameOver = isGameOver(farms);
         }
         
         //Message when game is over.
-        System.out.println("Congratulations! You've upgraded your farm entirely! Please start a "
-                + "new simulation.");
+        System.out.println("Congratulations! You've upgraded your farm "
+                + "entirely! Please start a new simulation.");
     }
     
     //Method called at end of each day to determine when simulation ends.
-    public static void isGameOver() {
+    protected static boolean isGameOver(ArrayList<Farm> farms) {
         int numMaxFarms = 0;
         for (Farm farm : farms) {
             if (farm.getSize() == Farm.LARGE_FARM) {
@@ -44,7 +43,10 @@ public class Main {
         }
         
         if (numMaxFarms > 5) {
-            isGameOver = true;
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }

@@ -1,12 +1,13 @@
 package main.java;
 
+import java.util.Random;
+
 public class DiceRoll {
-    private static int roll;
     
     public int rollDice() {
-        roll = 0;
+        int roll = 0;
         while (roll == 0) {
-            roll = (int)Math.random()*10;
+            roll = (new Random().nextInt(10));
         }
         return roll;
     }

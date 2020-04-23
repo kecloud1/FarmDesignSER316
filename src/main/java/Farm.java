@@ -14,18 +14,18 @@ public class Farm {
     private ArrayList<Farmer> farmers;
     private ArrayList<Animal> animals;
     
-    public final static int SMALL_FARM_MAX_ANIMALS = 30;
-    public final static int SMALL_FARM_MAX_FARMERS = 3;
+    public static final int SMALL_FARM_MAX_ANIMALS = 30;
+    public static final int SMALL_FARM_MAX_FARMERS = 3;
     
-    public final static int MEDIUM_FARM_MAX_ANIMALS = 100;
-    public final static int MEDIUM_FARM_MAX_FARMERS = 10;
+    public static final int MEDIUM_FARM_MAX_ANIMALS = 100;
+    public static final int MEDIUM_FARM_MAX_FARMERS = 10;
     
-    public final static int LARGE_FARM_MAX_ANIMALS = 200;
-    public final static int LARGE_FARM_MAX_FARMERS = 20;
+    public static final int LARGE_FARM_MAX_ANIMALS = 200;
+    public static final int LARGE_FARM_MAX_FARMERS = 20;
     
-    public final static int SMALL_FARM = 1;
-    public final static int MEDIUM_FARM = 2;
-    public final static int LARGE_FARM = 3;
+    public static final int SMALL_FARM = 1;
+    public static final int MEDIUM_FARM = 2;
+    public static final int LARGE_FARM = 3;
 
     //Constructor
     public Farm(String newName) {
