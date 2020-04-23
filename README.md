@@ -1,4 +1,5 @@
 # FarmDesignSER316
+> This simulator is dedicated to the Häge family and to Onkel Christian and Tante Ute, hardworking German farmers and part of our extended family. Visit the family farm at their website www.familie-haege.de/ or on Instagram @biohof.haege
 
 **Design Patterns**
  > The following are the design patterns that I plan on implements in my Farm Design Assignment. 
