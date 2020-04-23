@@ -1,10 +1,18 @@
 package main.java;
 
+/**
+ * Class represetns a MilkCow object.
+ * @author kelseycloud
+ *
+ */
 public class MilkCow extends Animal {
     
+    /**
+     * Method is a constructor for a MilkCow object.
+     */
     public MilkCow() {
         this.isBorn();
         this.setName("Milk Cow");
-        produces = new producesMilk();
+        produces = new ProducesMilk();
     }
 }

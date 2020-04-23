@@ -9,7 +9,10 @@ import java.util.ArrayList;
  *
  */
 public class Main {
-    
+    /**
+     * Program entry. Comment made to satisfy checkstyle.
+     * @param args - entry point
+     */
     public static void main(String[] args) {
         int days = 0;
         boolean isNight = true;

@@ -14,7 +14,7 @@ public class Farmer {
     
     private void setQuality() {
         while (quality < 1) {
-            quality = Math.random()*10;
+            quality = Math.random() * 10;
         }
     }
     

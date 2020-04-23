@@ -6,7 +6,7 @@ public interface Produces {
     public String produces();
 }
 
-class producesMilk implements Produces{
+class ProducesMilk implements Produces {
 
     @Override
     public String produces() {
@@ -15,7 +15,7 @@ class producesMilk implements Produces{
     
 }
 
-class producesEggs implements Produces{
+class ProducesEggs implements Produces {
 
     @Override
     public String produces() {
@@ -24,7 +24,7 @@ class producesEggs implements Produces{
     
 }
 
-class producesBacon implements Produces{
+class ProducesBacon implements Produces {
 
     @Override
     public String produces() {

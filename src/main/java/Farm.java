@@ -2,6 +2,11 @@ package main.java;
 
 import java.util.ArrayList;
 
+/**
+ * Class represents a Farm object.
+ * @author kelseycloud
+ *
+ */
 public class Farm {
     
     private String name;
@@ -27,7 +32,10 @@ public class Farm {
     public static final int MEDIUM_FARM = 2;
     public static final int LARGE_FARM = 3;
 
-    //Constructor
+    /**
+     * Method is a constructor for a new farm objects.
+     * @param newName - name of farm.
+     */
     public Farm(String newName) {
         name = newName;
         funds = 200; //All farms start with $200
@@ -38,44 +46,74 @@ public class Farm {
         System.out.println("A new farm named " + newName + " has been created.");
     }
     
-    //Class methods
+    /**
+     * Method sets a new name for farm.
+     * @param newName - new name for farm.
+     */
     public void setName(String newName) {
         this.name = newName;
     }
     
+    /**
+     * Method retrieves name of farm object.
+     * @return name of farm object.
+     */
     public String getName() {
         return name;
     }
+    
     /**
-     * Method intended to be used only in newDay()
+     * Method intended to be used only in newDay().
      * @param toBeAdded - int of funds accrued by farm during previous day/night cycle
      */
     protected void addFunds(int toBeAdded) {
         this.funds = funds + toBeAdded;
     }
     
+    /**
+     * Method returns funds available to farm object.
+     * @return funds - current funds
+     */
     public int getFunds() {
         return funds;
     }
     
+    /**
+     * Method returns the size of the farm.
+     * @return size - an int representing the size of the farm.
+     */
     public int getSize() {
         return size;
     }
     
-    //Add and remove farmers and update counter
+    /**
+     * Method intended only to be used when addFarmer() is called.
+     */
     private void incrementFarmerCount() {
         farmerCount++;
     }
     
+    /**
+     * Method intended only to be used when removeFarmer() is called.
+     */
     private void decrementFarmerCount() {
         farmerCount--;
     }
     
+    /**
+     * Method returns the number of farmers on the farm.
+     * @return farmerCount - int number of farmers on farm.
+     */
     public int getFarmerCount() {
         return farmerCount;
     }
     
+    /**
+     * Method adds a farmer to the farm and increments the farmer counter.
+     * @param farmer - Farmer object to be added.
+     */
     public void addFarmer(Farmer farmer) {
+        //Check if farm has reached max num of farmers
         if (farmerCount < 6) {
             farmers.add(farmer);
             incrementFarmerCount();
@@ -85,6 +123,11 @@ public class Farm {
         }
     }
     
+    /**
+     * Method removes a farmer from the farm, and decrements the farmer counter.
+     * @param farmer - object to be removed
+     * @return true if farmer was removed, false if otherwise.
+     */
     public boolean removeFarmer(Farmer farmer) {
         if (farmers.remove(farmer)) {
             decrementFarmerCount();
@@ -92,29 +135,48 @@ public class Farm {
         }
         return false;
     }
-    //Add and remove animals and update counter
+    
+    /**
+     * Method intended only to be used when addAnimal() is called.
+     */
     private void incrementAnimalCount() {
         animalCount++;
     }
     
+    /**
+     * Method intended only to be used when removeAnimal() is called.
+     */
     private void decrementAnimalCount() {
         animalCount--;
     }
     
+    /**
+     * Method returns the number of animals on the farm.
+     * @return animalCount - int number of animals on farm.
+     */
     public int getAnimalCount() {
         return animalCount;
     }
     
+    /**
+     * Method adds a animal to the farm and increments the animal counter.
+     * @param animal - Animal object to be added.
+     */
     public void addAnimal(Animal animal) {
         if (animalCount < 6) {
             animals.add(animal);
             incrementAnimalCount();
-        }
+        } 
         else {
             System.out.println("Cannon add animal. Max number of animals reached on this farm.");
         }
     }
     
+    /**
+     * Method removes an animal object from the farm, and decrements the animal counter.
+     * @param animal - object to be removed
+     * @return true if animal was removed, false if otherwise.
+     */
     public boolean removeAnimal(Animal animal) {
         if (animals.remove(animal)) {
             decrementAnimalCount();
@@ -123,10 +185,17 @@ public class Farm {
         return false;
     }
     
+    /**
+     * When called, method calls getPassiveIncome() and adds it to funds.
+     */
     public void newDay() {
         addFunds(this.getPassiveIncome());
     }
 
+    /**
+     * Method calculate passive income based on the number of animals on the farm.
+     * @return incomeGenerated - passive income generated that day.
+     */
     private int getPassiveIncome() {
         int cowCount = 0;
         int chickenCount = 0;
@@ -145,9 +214,9 @@ public class Farm {
                 pigCount++;
             }
         }
-        incomeGenerated = (chickenCount * 2) + (cowCount * 1) + (pigCount *2);
+        incomeGenerated = (chickenCount * 2) + (cowCount * 1) + (pigCount * 2);
         
-        System.out.println("Passive income generated today: $" + incomeGenerated );
+        System.out.println("Passive income generated today: $" + incomeGenerated);
         return incomeGenerated;
     }
 }

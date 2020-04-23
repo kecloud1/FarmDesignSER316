@@ -15,7 +15,7 @@ public abstract class Animal {
     private double quality = 0;
     
     /**
-     * Method returns name
+     * Method returns name.
      * @return name - name of animal
      */
     public String getName() {
@@ -23,7 +23,7 @@ public abstract class Animal {
     }
     
     /**
-     * Method sets name
+     * Method sets name.
      * @param name - name of animal
      */
     public void setName(String name) {
@@ -31,7 +31,7 @@ public abstract class Animal {
     }
     
     /**
-     * Method returns the animals age
+     * Method returns the animals age.
      * @return daysOld - how many days old the animal is
      */
     public int getAge() {
@@ -47,7 +47,7 @@ public abstract class Animal {
     }
     
     /**
-     * Method returns a boolean to indicate if the animal is of producing age
+     * Method returns a boolean to indicate if the animal is of producing age.
      * @return isProducingAge - true if greater than 3 days old, false if otherwise.
      */
     public boolean isProducingAge() {
@@ -66,8 +66,8 @@ public abstract class Animal {
     }
     
     /**
-     * Method sets the product that the animal produces
-     * @param produces - type of product animal produces
+     * Method sets the product that the animal produces.
+     * @param product - type of product animal produces
      */
     public void setProduct(Produces product) {
         this.produces = product;
@@ -82,7 +82,7 @@ public abstract class Animal {
     }
     
     /**
-     * Method returns the quality of the animal
+     * Method returns the quality of the animal.
      * @return quality - a random double between 0-10
      */
     public double getQuality() {
@@ -90,8 +90,8 @@ public abstract class Animal {
     }
     
     /**
-     * Method can only be called when an animal is born and sets their quality as a 
-     * double between 1-10
+     * Method can only be called when an animal is born and sets their quality as a double between 
+     * 1-10.
      */
     private void setQuality() {
         while (quality < 1) {

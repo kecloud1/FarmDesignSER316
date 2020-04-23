@@ -41,7 +41,6 @@
             <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
         </module>
         <module name="AvoidStarImport"/>
-        <module name="OneTopLevelClass"/>
         <module name="NoLineWrap"/>
         <module name="EmptyBlock">
             <property name="option" value="TEXT"/>
@@ -50,7 +49,8 @@
         <module name="NeedBraces"/>
         <module name="LeftCurly"/>
         <module name="RightCurly">
-            <property name="id" value="RightCurlySame"/>
+            <property name="id" value="RightCurlyAlone"/>
+            <property name="option" value="alone"/>
             <property name="tokens" value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_DO"/>
         </module>
         <module name="RightCurly">
