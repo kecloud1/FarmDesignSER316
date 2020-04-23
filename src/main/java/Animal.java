@@ -1,57 +1,98 @@
 package main.java;
-
+/**
+ * This class serves as an abstract class, from which instance variables and methods are inherited.
+ * @author kelseycloud
+ *
+ */
 public abstract class Animal {
     private String name;
     private int daysOld;
     private boolean isProducingAge = false;
     private String produces;
-    private int quality;
+    private double quality = 0;
     
+    /**
+     * Method returns name
+     * @return name - name of animal
+     */
     public String getName() {
-        return this.name;
+        return name;
     }
     
+    /**
+     * Method sets name
+     * @param name - name of animal
+     */
     public void setName(String name) {
         this.name = name;
     }
     
+    /**
+     * Method returns the animals age
+     * @return daysOld - how many days old the animal is
+     */
     public int getAge() {
-        return this.daysOld;
+        return daysOld;
     }
     
+    /**
+     * Method is called when Animal object is created and begins counter for how old animal is.
+     */
     protected void isBorn() {
         daysOld = 0;
+        this.setQuality();
     }
     
+    /**
+     * Method returns a boolean to indicate if the animal is of producing age
+     * @return isProducingAge - true if greater than 3 days old, false if otherwise.
+     */
     public boolean isProducingAge() {
-        if (isProducingAge) {
-            return isProducingAge;
-        }
         if (daysOld > 3) {
             isProducingAge = true;
-            return isProducingAge;
         }
         return isProducingAge;
     }
     
+    /**
+     * Method returns the type of product that the animal produces.
+     * @return produces - String of animal product
+     */
     public String getProduct() {
         return produces;
     }
     
+    /**
+     * Method sets the product that the animal produces
+     * @param produces - type of product animal produces
+     */
     public void setProduct(String produces) {
         this.produces = produces;
     }
     
+    /**
+     * When called, toString() returns a sentence indicating the type of animal.
+     */
     public String toString() {
         String toString = "This animal is a " + name + ".";
         return toString;
     }
     
-    public int getQuality() {
+    /**
+     * Method returns the quality of the animal
+     * @return quality - a random double between 0-10
+     */
+    public double getQuality() {
         return quality;
     }
     
-    public void setQuality(int qual) {
-        this.quality = qual;
+    /**
+     * Method can only be called when an animal is born and sets their quality as a 
+     * double between 1-10
+     */
+    private void setQuality() {
+        while (quality < 1) {
+            quality = Math.random()*10;
+        }
     }
 }

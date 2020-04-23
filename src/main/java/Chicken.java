@@ -5,6 +5,5 @@ public class Chicken extends Animal {
         this.isBorn();
         this.setName("Chicken");
         this.setProduct("Egg");
-        this.setQuality((int)Math.abs(Math.random()*100));
     }
 }

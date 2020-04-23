@@ -6,6 +6,5 @@ public class MilkCow extends Animal {
         this.isBorn();
         this.setName("Milk Cow");
         this.setProduct("Milk");
-        this.setQuality((int)Math.abs(Math.random()*100));
     }
 }
