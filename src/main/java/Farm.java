@@ -6,6 +6,7 @@ public class Farm {
     
     private String name;
     private int funds;
+    private int size;
 
     private int farmerCount = 0;
     private int animalCount = 0;
@@ -13,13 +14,24 @@ public class Farm {
     private ArrayList<Farmer> farmers;
     private ArrayList<Animal> animals;
     
-    private final static int MAX_ANIMALS = 30;
-    private final static int MAX_FARMERS = 6;
+    public final static int SMALL_FARM_MAX_ANIMALS = 30;
+    public final static int SMALL_FARM_MAX_FARMERS = 3;
+    
+    public final static int MEDIUM_FARM_MAX_ANIMALS = 100;
+    public final static int MEDIUM_FARM_MAX_FARMERS = 10;
+    
+    public final static int LARGE_FARM_MAX_ANIMALS = 200;
+    public final static int LARGE_FARM_MAX_FARMERS = 20;
+    
+    public final static int SMALL_FARM = 1;
+    public final static int MEDIUM_FARM = 2;
+    public final static int LARGE_FARM = 3;
 
     //Constructor
     public Farm(String newName) {
         name = newName;
         funds = 200; //All farms start with $200
+        size = 1; //All new farms start as small farms.
         farmers = new ArrayList<Farmer>();
         animals = new ArrayList<Animal>();
         
@@ -44,6 +56,10 @@ public class Farm {
     
     public int getFunds() {
         return funds;
+    }
+    
+    public int getSize() {
+        return size;
     }
     
     //Add and remove farmers and update counter

@@ -1,5 +1,6 @@
 package main.java;
 
+//Factory design pattern
 public class AnimalFactory {
     
     public Animal makeAnimal(String animalToCreate) {

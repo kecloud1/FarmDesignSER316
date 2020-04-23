@@ -8,7 +8,7 @@ public abstract class Animal {
     private String name;
     private int daysOld;
     private boolean isProducingAge = false;
-    private String produces;
+    public Produces produces;
     private double quality = 0;
     
     /**
@@ -59,15 +59,15 @@ public abstract class Animal {
      * @return produces - String of animal product
      */
     public String getProduct() {
-        return produces;
+        return produces.produces();
     }
     
     /**
      * Method sets the product that the animal produces
      * @param produces - type of product animal produces
      */
-    public void setProduct(String produces) {
-        this.produces = produces;
+    public void setProduct(Produces product) {
+        this.produces = product;
     }
     
     /**

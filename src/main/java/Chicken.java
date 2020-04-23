@@ -4,6 +4,6 @@ public class Chicken extends Animal {
     public Chicken() {
         this.isBorn();
         this.setName("Chicken");
-        this.setProduct("Egg");
+        produces = new producesEggs(); //Strategy pattern
     }
 }
