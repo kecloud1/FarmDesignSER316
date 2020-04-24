@@ -5,7 +5,7 @@ package main.java;
  * @author kelseycloud
  *
  */
-public class Pig extends Animal {
+public class Pig extends Animal implements Observer{
     
     /**
      * Method constructs a Pig object.
@@ -18,7 +18,7 @@ public class Pig extends Animal {
     
     public void harvestProduct() {
     if (hasProduct()) {
-        harvestProduct();
+        this.setHasProduct(false);
         Farm.addFunds(7);
     }
     return;

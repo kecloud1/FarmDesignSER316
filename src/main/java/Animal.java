@@ -9,6 +9,7 @@ import java.util.Random;
  *
  */
 public abstract class Animal  implements Observer{
+    private Random rand = new Random();
     private String name;
     private int daysOld;
     private boolean isProducingAge = false;
@@ -47,7 +48,7 @@ public abstract class Animal  implements Observer{
     protected void isBorn() {
         daysOld = 0;
         this.isDay = true;
-        this.setQuality();
+        DayCycle.register(this);
     }
     
     /**
@@ -73,8 +74,8 @@ public abstract class Animal  implements Observer{
      * Method sets the product that the animal produces.
      * @param product - type of product animal produces
      */
-    public void setProduct(Produces product) {
-        this.produces = product;
+    public void setHasProduct(boolean bool) {
+        hasProduct = bool;
     }
     
     /**
@@ -109,13 +110,20 @@ public abstract class Animal  implements Observer{
         return hasProduct;
     }
     
-    public void update(boolean isDay) { 
-        if (isDay) {
+    public void update(boolean Day) { 
+        if (Day) {
             if (daysOld > 3) {
                 hasProduct =  true;
             }
         }
-        this.isDay = isDay;
+        isDay = Day;
         daysOld++; 
+    }
+    
+    public boolean isSick() {
+        if (rand.nextInt(100) >= 95) {
+            return true;
+        }
+        return false;
     }
 }

@@ -5,20 +5,20 @@ package main.java;
  * @author kelseycloud
  *
  */
-public class MilkCow extends Animal {
+public class MilkCow extends Animal implements Observer{
     
     /**
      * Method is a constructor for a MilkCow object.
      */
     public MilkCow() {
         this.isBorn();
-        this.setName("Milk Cow");
+        this.setName("Cow");
         produces = new ProducesMilk();
     }
     
     public void harvestProduct() {
     if (hasProduct()) {
-        harvestProduct();
+        this.setHasProduct(false);
         Farm.addFunds(5);
     }
     return;

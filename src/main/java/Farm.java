@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class represents a Farm object.
@@ -8,9 +9,11 @@ import java.util.ArrayList;
  *
  */
 public class Farm {
+    AnimalFactory factory = new AnimalFactory();
+
     
     private int id;
-    private static int funds = 2000; //each player starts with $500
+    private static int funds = 500; //each player starts with $500
     private int size;
 
     private int farmerCount = 0;
@@ -33,7 +36,7 @@ public class Farm {
     public static final int LARGE_FARM = 3;
 
     /**
-     * Method is a constructor for a new farm objects.
+     * Method is a constructor for a new farm objects. Every farm starts with 2 of each animal.
      * @param newName - name of farm.
      */
     public Farm(int ID) {
@@ -42,7 +45,14 @@ public class Farm {
         farmers = new ArrayList<Farmer>();
         animals = new ArrayList<Animal>();
         
-        System.out.println("A new farm named " + ID + " has been created.");
+        //each farm starts with 2 of each animal.
+        for (int x = 0; x < 2; x++) {
+            animals.add(factory.makeAnimal("Cow"));
+            animals.add(factory.makeAnimal("Chicken"));
+            animals.add(factory.makeAnimal("Pig"));
+        }
+        
+        System.out.println("A new farm (farm #" + ID + ") has been created.");
     }
     
     /**
@@ -211,25 +221,86 @@ public class Farm {
                 pigCount++;
             }
         }
-        incomeGenerated = (chickenCount * 2) + (cowCount * 1) + (pigCount * 2);
+        incomeGenerated = 500 + (chickenCount * 2) + (cowCount * 1) + (pigCount * 2);
         
-        System.out.println("Passive income generated today: $" + incomeGenerated);
+        System.out.println("Passive income generated today by farm #" + id + " :" + " $" + incomeGenerated);
         addFunds(incomeGenerated);
     }
     
     public void upgradeFarm() {
         if (funds > 1999 && this.getSize() == 1) {
-            funds = funds - 2000;
+            addFunds( -2000);
             this.size = MEDIUM_FARM;
             
             System.out.println("\nFarm number " + id + " has been upgraded to level " + size);
         }
         if (funds > 9999 && this.getSize() == 2) {
-            funds = funds - 10000;
+            addFunds( -10000);
             this.size = LARGE_FARM;
             
             System.out.println("\nFarm number " + id + " has been upgraded to level " + size);
 
+        }
+    }
+    
+    public int countCows() {
+        int num = 0;
+        for (Animal animal : animals) {
+            if (animal.getName().equals("Cow")) {
+                num++;
+            }
+            
+        }
+        return num;
+    }
+    
+    public int countChickens() {
+        int num = 0;
+        for (Animal animal : animals) {
+            if (animal.getName().equals("Chicken")) {
+                num++;
+            }
+            
+        }
+        return num;
+    }
+    
+    public int countPigs() {
+        int num = 0;
+        for (Animal animal : animals) {
+            if (animal.getName().equals("Pig")) {
+                num++;
+            }
+            
+        }
+        return num;
+    }
+    
+    public void doTheHankyPanky() {
+        int numCows = countCows();
+        int numChickens = countChickens();
+        int numPigs = countPigs();
+        
+        if (numCows >= 2) {
+            if (new Random().nextInt(10) >= 5) {
+                animals.add(factory.makeAnimal("Cow"));
+                System.out.println("A new baby cow was born!");
+
+            }
+        }
+        
+        if (numChickens >= 2) {
+            if (new Random().nextInt(10) >= 5) {
+                animals.add(factory.makeAnimal("Chicken"));
+                System.out.println("A new baby chicken was born!");
+
+            }
+        }
+        if (numPigs >= 2) {
+            if (new Random().nextInt(10) >= 5) {
+                animals.add(factory.makeAnimal("Pig"));
+                System.out.println("A new baby pig was born!");
+            }
         }
     }
 }

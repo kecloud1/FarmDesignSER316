@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * This class serves as an entry point for the program. This class serves as a control for the 
@@ -14,6 +15,7 @@ public class Main {
      * @param args - entry point
      */
     public static void main(String[] args) {
+        Random rand = new Random();
         int days = 0;
         int farmID = 2; 
         DayCycle dayCycle = new DayCycle(); 
@@ -28,30 +30,19 @@ public class Main {
         //Game loop. Game starts here.
         while (!isGameOver) {
             dayCycle.switchToDay();
-            
+            days++;
             //New Day info
-            System.out.println("\nTodays is day " + (days + 1) +
+            System.out.println("\nTodays is day " + (days) +
                     "\n# of farms owned: " + farms.size() + "." +
                     "\nFunds in Bank: $" + Farm.getFunds() + "\n");
             
-            //Get farm info for each farm and print to console
+            //Get animal info for each farm and print to console
             for (Farm farm : farms) {
-                ArrayList<Animal> temp = farm.getAnimals();
-                int numCow = 0;
-                int numChick = 0;
-                int numPig = 0;
-                for (Animal animal : temp) {
-                    if (animal.getName().equals("Cow")) {
-                        numCow++;
-                    }
-                    if (animal.getName().equals("Chicken")) {
-                        numChick++;
-                    }
-                    if (animal.getName().equals("Pig")) {
-                        numPig++;
-                    }
-                }
-                System.out.println("\nFarm name: " + farm.getName() + "\nNuber of Cows: " + numCow + 
+                int numCow = farm.countCows();
+                int numChick = farm.countChickens();
+                int numPig = farm.countPigs();
+
+                System.out.println("\nFarm #: " + farm.getName() + "\nNuber of Cows: " + numCow + 
                         "\nNumber of Chickens: " + numChick + "\nNumber of Pigs: " + numPig + "\n");
             }
             
@@ -70,10 +61,11 @@ public class Main {
             }
             
             //Buy a new farm if all farms are upgraded and player has enough funds
-            while (Farm.getFunds() >= 20000) {
+            while (Farm.getFunds() >= 10000) {
                 farms.add(new Farm (farmID));
-                Farm.addFunds(-20000);
+                Farm.addFunds(-10000);
                 farmID++;
+                System.out.println("Congratulations! You bought a new farm!");
             }
             
             
@@ -90,9 +82,48 @@ public class Main {
             //day over
             dayCycle.switchToNight();
             
+            //Character immune to disasters until at least 10 days old
+            if (days > 10) {
+                if (Predator.attack()) {
+                    int priceOfAttack = rand.nextInt(1000);
+                    System.out.println("Oh no! A predator attacked your animals! Your vet bill is: "
+                            + priceOfAttack);
+                    Farm.addFunds(-priceOfAttack);
+                 }
+                
+                /*Check animals for sickness. Animals have a 5% chance of getting sick, and once they do,
+                the animal dies.*/
+                for (Farm farm : farms) {
+                    ArrayList<Animal> list = farm.getAnimals();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).isSick()) {
+                            System.out.println("You lost an animal to sickness on farm #" + farm.getName() + ". "
+                                    + "The animal you lost was a " + list.get(i).getName());
+                            farm.getAnimals().remove(i);
+                        }
+    
+                    }
+                }
+                
+                //Check for animals who died of old age and remove them.
+                for (Farm farm : farms) {
+                    int numDied = 0;
+                    ArrayList<Animal> list = farm.getAnimals();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getAge() > 14) {
+                            farm.getAnimals().remove(list.get(i));
+                            numDied++;
+                        }
+                    }
+                    
+                    System.out.println(numDied + " animals died last night due to old age.");
+                }
+            }
             
-            
-            
+            //Animals have a chance to birth new animals
+            for (Farm farm : farms) {
+                farm.doTheHankyPanky();
+            }
             
             //end of loop. Check if game won.
             isGameOver = isGameOver(farms);
