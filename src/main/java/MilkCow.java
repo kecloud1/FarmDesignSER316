@@ -15,4 +15,12 @@ public class MilkCow extends Animal {
         this.setName("Milk Cow");
         produces = new ProducesMilk();
     }
+    
+    public void harvestProduct() {
+    if (hasProduct()) {
+        harvestProduct();
+        Farm.addFunds(5);
+    }
+    return;
+    }
 }

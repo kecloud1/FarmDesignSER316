@@ -4,15 +4,18 @@ import java.util.Random;
 
 /**
  * This class serves as an abstract class, from which instance variables and methods are inherited.
+ * Animal implements observer to track age.
  * @author kelseycloud
  *
  */
-public abstract class Animal {
+public abstract class Animal  implements Observer{
     private String name;
     private int daysOld;
     private boolean isProducingAge = false;
+    private boolean hasProduct = false;
     public Produces produces;
     private double quality = 0;
+    private boolean isDay;
     
     /**
      * Method returns name.
@@ -43,6 +46,7 @@ public abstract class Animal {
      */
     protected void isBorn() {
         daysOld = 0;
+        this.isDay = true;
         this.setQuality();
     }
     
@@ -97,5 +101,21 @@ public abstract class Animal {
         while (quality < 1) {
             quality = new Random().nextInt(10);
         }
+    }
+    
+    public abstract void harvestProduct();
+    
+    public boolean hasProduct() {
+        return hasProduct;
+    }
+    
+    public void update(boolean isDay) { 
+        if (isDay) {
+            if (daysOld > 3) {
+                hasProduct =  true;
+            }
+        }
+        this.isDay = isDay;
+        daysOld++; 
     }
 }

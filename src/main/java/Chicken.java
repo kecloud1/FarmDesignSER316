@@ -14,4 +14,12 @@ public class Chicken extends Animal {
         this.setName("Chicken");
         produces = new ProducesEggs(); //Strategy pattern
     }
+    
+    public void harvestProduct() {
+    if (hasProduct()) {
+        harvestProduct();
+        Farm.addFunds(2);
+    }
+    return;
+    }
 }

@@ -15,4 +15,12 @@ public class Pig extends Animal {
         this.setName("Pig");
         produces = new ProducesBacon(); //Strategy pattern
     }
+    
+    public void harvestProduct() {
+    if (hasProduct()) {
+        harvestProduct();
+        Farm.addFunds(7);
+    }
+    return;
+    }
 }

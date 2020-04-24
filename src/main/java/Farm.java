@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class Farm {
     
-    private String name;
-    private int funds;
+    private int id;
+    private static int funds = 2000; //each player starts with $500
     private int size;
 
     private int farmerCount = 0;
@@ -36,45 +36,44 @@ public class Farm {
      * Method is a constructor for a new farm objects.
      * @param newName - name of farm.
      */
-    public Farm(String newName) {
-        name = newName;
-        funds = 200; //All farms start with $200
+    public Farm(int ID) {
+        id = ID;
         size = 1; //All new farms start as small farms.
         farmers = new ArrayList<Farmer>();
         animals = new ArrayList<Animal>();
         
-        System.out.println("A new farm named " + newName + " has been created.");
+        System.out.println("A new farm named " + ID + " has been created.");
     }
     
     /**
      * Method sets a new name for farm.
      * @param newName - new name for farm.
      */
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName(int newID) {
+        this.id = newID;
     }
     
     /**
      * Method retrieves name of farm object.
      * @return name of farm object.
      */
-    public String getName() {
-        return name;
+    public int getName() {
+        return id;
     }
     
     /**
-     * Method intended to be used only in newDay().
+     * Method adds funds.
      * @param toBeAdded - int of funds accrued by farm during previous day/night cycle
      */
-    protected void addFunds(int toBeAdded) {
-        this.funds = funds + toBeAdded;
+    public static void addFunds(int toBeAdded) {
+        funds = funds + toBeAdded;
     }
     
     /**
      * Method returns funds available to farm object.
      * @return funds - current funds
      */
-    public int getFunds() {
+    public static int getFunds() {
         return funds;
     }
     
@@ -185,18 +184,16 @@ public class Farm {
         return false;
     }
     
-    /**
-     * When called, method calls getPassiveIncome() and adds it to funds.
-     */
-    public void newDay() {
-        addFunds(this.getPassiveIncome());
+    public ArrayList<Animal> getAnimals() {
+        return animals;
     }
+    
 
     /**
      * Method calculate passive income based on the number of animals on the farm.
      * @return incomeGenerated - passive income generated that day.
      */
-    private int getPassiveIncome() {
+    public void collectPassiveIncome() {
         int cowCount = 0;
         int chickenCount = 0;
         int pigCount = 0;
@@ -217,6 +214,39 @@ public class Farm {
         incomeGenerated = (chickenCount * 2) + (cowCount * 1) + (pigCount * 2);
         
         System.out.println("Passive income generated today: $" + incomeGenerated);
-        return incomeGenerated;
+        addFunds(incomeGenerated);
+    }
+    
+    public void upgradeFarm() {
+        if (funds > 1999 && this.getSize() == 1) {
+            funds = funds - 2000;
+            this.size = MEDIUM_FARM;
+            
+            System.out.println("\nFarm number " + id + " has been upgraded to level " + size);
+        }
+        if (funds > 9999 && this.getSize() == 2) {
+            funds = funds - 10000;
+            this.size = LARGE_FARM;
+            
+            System.out.println("\nFarm number " + id + " has been upgraded to level " + size);
+
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
