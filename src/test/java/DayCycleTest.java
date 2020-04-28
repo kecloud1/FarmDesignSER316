@@ -19,9 +19,4 @@ public class DayCycleTest {
         
         assertEquals(2, cycle.getDays());
     }
-    @Test
-    public void test() {
-        
-    }
-
 }

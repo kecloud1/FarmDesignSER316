@@ -41,7 +41,7 @@ public class FarmTest {
         int funds = farm.getFunds();
         farm.addFunds(200);
         
-        assertEquals((funds+200), farm.getFunds());
+        assertEquals((funds + 200), farm.getFunds());
     }
     
     @Test

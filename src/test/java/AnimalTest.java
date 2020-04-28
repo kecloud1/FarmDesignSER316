@@ -1,11 +1,11 @@
 package test.java;
 
-import static org.junit.Assert.*;
+import main.java.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.*;
+import static org.junit.Assert.*;
 
 /**
  * This test class serves to test the various animal classes (Pig, Chicken, and 
@@ -170,13 +170,11 @@ public class AnimalTest {
     @Test
     public void testAge() {
         DayCycle day = new DayCycle();
-        Animal animal = factory.makeAnimal("Cow");
+        final Animal animal = factory.makeAnimal("Cow");
         
         day.switchToNight();
-        
         day.switchToDay();
         day.switchToNight();
-        
         day.switchToDay();
         day.switchToNight();
         
@@ -202,14 +200,14 @@ public class AnimalTest {
     @Test
     public void testPredator() {
         Predator pred = new Predator();
-        int numOfAttacks =0;
-        for (int i = 0; i<100; i++) {
+        int numOfAttacks = 0;
+        for (int i = 0; i < 100; i++) {
             if (pred.attack()) {
                 numOfAttacks++;
             }
         }
-        int percentAttack = 100/numOfAttacks;
-        System.out.println("Percent chance of attack: " +(percentAttack));
+        int percentAttack = 100 / numOfAttacks;
+        System.out.println("Percent chance of attack: " + (percentAttack));
         assertEquals(10, percentAttack, 8);
         
     }
