@@ -33,7 +33,7 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'main.java.Main'
+mainClassName = 'main.mainMethod.main'
 
 ///////////////////////////////////////////////////////////////////////
 // Configure Checkstyle
