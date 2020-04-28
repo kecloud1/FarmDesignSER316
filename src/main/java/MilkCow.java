@@ -5,7 +5,7 @@ package main.java;
  * @author kelseycloud
  *
  */
-public class MilkCow extends Animal implements Observer{
+public class MilkCow extends Animal implements Observer {
     
     /**
      * Method is a constructor for a MilkCow object.

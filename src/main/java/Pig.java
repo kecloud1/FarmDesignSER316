@@ -5,7 +5,7 @@ package main.java;
  * @author kelseycloud
  *
  */
-public class Pig extends Animal implements Observer{
+public class Pig extends Animal implements Observer {
     
     /**
      * Method constructs a Pig object.

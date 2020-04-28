@@ -28,10 +28,10 @@ public class Farm {
 
     /**
      * Method is a constructor for a new farm objects. Every farm starts with 2 of each animal.
-     * @param newName - name of farm.
+     * @param id - number of farm.
      */
-    public Farm(int ID) {
-        id = ID;
+    public Farm(int id) {
+        this.id = id;
         size = 1; //All new farms start as small farms.
         animals = new ArrayList<Animal>();
         
@@ -42,15 +42,15 @@ public class Farm {
             animals.add(factory.makeAnimal("Pig"));
         }
         
-        System.out.println("A new farm (farm #" + ID + ") has been created.");
+        System.out.println("A new farm (farm #" + id + ") has been created.");
     }
     
     /**
      * Method sets a new name for farm.
-     * @param newName - new name for farm.
+     * @param newId - new name for farm.
      */
-    public void setName(int newID) {
-        this.id = newID;
+    public void setName(int newId) {
+        this.id = newId;
     }
     
     /**
@@ -102,11 +102,14 @@ public class Farm {
     public void addAnimal(Animal animal) {
         if (size == 1 && animals.size() < 30) {
             animals.add(animal);
-        } else if (size == 2 && animals.size() < 100) {
+        }
+        else if (size == 2 && animals.size() < 100) {
             animals.add(animal);
-        } else if (size == 3 && animals.size() < 200) {
+        }
+        else if (size == 3 && animals.size() < 200) {
             animals.add(animal);
-        } else {
+        }
+        else {
             System.out.println("Cannot add animal. Max number of animals reached on this farm.");
         }
     }
@@ -152,20 +155,24 @@ public class Farm {
         }
         incomeGenerated = 500 + (chickenCount * 2) + (cowCount * 1) + (pigCount * 2);
         
-        System.out.println("Passive income generated today by farm #" + id + " :" + " $" + incomeGenerated);
+        System.out.println("Passive income generated today by farm #" + id + " :" + " $"
+                + incomeGenerated);
         addFunds(incomeGenerated);
         return incomeGenerated;
     }
     
+    /**
+     * Method upgrades a farm if the farm has sufficient funds.
+     */
     public void upgradeFarm() {
         if (funds > 1999 && this.getSize() == 1) {
-            addFunds( -2000);
+            addFunds(-2000);
             this.size = MEDIUM_FARM;
             
             System.out.println("\nFarm number " + id + " has been upgraded to level " + size);
         }
         if (funds > 9999 && this.getSize() == 2) {
-            addFunds( -10000);
+            addFunds(-10000);
             this.size = LARGE_FARM;
             
             System.out.println("\nFarm number " + id + " has been upgraded to level " + size);
@@ -173,6 +180,10 @@ public class Farm {
         }
     }
     
+    /**
+     * Method counts total number of Cows on a farm.
+     * @return num - number of cows on farm.
+     */
     public int countCows() {
         int num = 0;
         for (Animal animal : animals) {
@@ -184,6 +195,10 @@ public class Farm {
         return num;
     }
     
+    /**
+     * Method counts total number of Chickens on a farm.
+     * @return num - number of chickens on farm.
+     */
     public int countChickens() {
         int num = 0;
         for (Animal animal : animals) {
@@ -195,6 +210,10 @@ public class Farm {
         return num;
     }
     
+    /**
+     * Method counts total number of pigs on a farm.
+     * @return num - number of pigs on farm.
+     */
     public int countPigs() {
         int num = 0;
         for (Animal animal : animals) {
@@ -206,6 +225,10 @@ public class Farm {
         return num;
     }
     
+    /**
+     * Method will populate additional animals if there are more than two. There is a 50% chance
+     * that a new animal will be born for each type of animal.
+     */
     public void doTheHankyPanky() {
         int numCows = countCows();
         int numChickens = countChickens();

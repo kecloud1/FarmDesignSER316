@@ -208,8 +208,9 @@ public class AnimalTest {
                 numOfAttacks++;
             }
         }
-        System.out.println("Percent chance of attack: " +(100/numOfAttacks));
-        assertEquals(10, 100/numOfAttacks, 8);
+        int percentAttack = 100/numOfAttacks;
+        System.out.println("Percent chance of attack: " +(percentAttack));
+        assertEquals(10, percentAttack, 8);
         
     }
 
