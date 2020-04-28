@@ -68,6 +68,16 @@ apply plugin: "com.github.spotbugs"
    }
  }
 
-
-
-
+jacocoTestReport {
+    reports {
+        html {
+            enabled true
+        }
+    }
+}
+test {
+    jacoco {
+        excludes = ['main.mainMethod']
+    }
+}
+test.finalizedBy(project.tasks.jacocoTestReport)

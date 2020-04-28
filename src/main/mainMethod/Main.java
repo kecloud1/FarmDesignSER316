@@ -1,7 +1,12 @@
-package main.java;
+package main.mainMethod;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import main.java.Animal;
+import main.java.DayCycle;
+import main.java.Farm;
+import main.java.Predator;
 
 /**
  * This class serves as an entry point for the program. This class serves as a control for the 

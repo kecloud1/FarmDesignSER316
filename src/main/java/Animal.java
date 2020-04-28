@@ -16,7 +16,6 @@ public abstract class Animal  implements Observer{
     private boolean isProducingAge = false;
     private boolean hasProduct = false;
     public Produces produces;
-    private double quality = 0;
     
     /**
      * Method returns name.
@@ -55,7 +54,7 @@ public abstract class Animal  implements Observer{
      * @return isProducingAge - true if greater than 3 days old, false if otherwise.
      */
     public boolean isProducingAge() {
-        if (daysOld > 3) {
+        if (daysOld >= 3) {
             isProducingAge = true;
         }
         return isProducingAge;
@@ -83,24 +82,6 @@ public abstract class Animal  implements Observer{
     public String toString() {
         String toString = "This animal is a " + name + ".";
         return toString;
-    }
-    
-    /**
-     * Method returns the quality of the animal.
-     * @return quality - a random double between 0-10
-     */
-    public double getQuality() {
-        return quality;
-    }
-    
-    /**
-     * Method can only be called when an animal is born and sets their quality as a double between 
-     * 1-10.
-     */
-    private void setQuality() {
-        while (quality < 1) {
-            quality = new Random().nextInt(10);
-        }
     }
     
     /**
@@ -152,13 +133,13 @@ public abstract class Animal  implements Observer{
      */
     public void update(boolean Day) { 
         if (Day) {
+            daysOld++;
             //Animal product reoccurs every two days, and only if the animal is 
             //at least 3 days old.
-            if (daysOld > 3 && daysOld-daysOldWhenHarvested >= 2) {
+            if (daysOld >= 3 && daysOld-daysOldWhenHarvested >= 2) {
                 hasProduct =  true;
             }
         }
-        daysOld++;
     }
     
     /**

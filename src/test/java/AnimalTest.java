@@ -166,6 +166,52 @@ public class AnimalTest {
         assertTrue(testPig.hasProduct());
         
     }
+    
+    @Test
+    public void testAge() {
+        DayCycle day = new DayCycle();
+        Animal animal = factory.makeAnimal("Cow");
+        
+        day.switchToNight();
+        
+        day.switchToDay();
+        day.switchToNight();
+        
+        day.switchToDay();
+        day.switchToNight();
+        
+        assertEquals(2, animal.getAge());
+        assertFalse(animal.isProducingAge());
+        
+        day.switchToDay();
+        day.switchToNight();
+        
+        assertTrue(animal.isProducingAge());
+        assertTrue(animal.hasProduct());
+        
+        animal.harvestProduct();
+        assertEquals(3, animal.getDaysOldOnLastHarvest());
+        
+    }
+    
+    /**
+     * Behavior is unpredictable by design, but output is printed to observe 
+     * pattern. Should attack approx 10% of the time. Test asserts this with 
+     * plus or minus 8%.
+     */
+    @Test
+    public void testPredator() {
+        Predator pred = new Predator();
+        int numOfAttacks =0;
+        for (int i = 0; i<100; i++) {
+            if (pred.attack()) {
+                numOfAttacks++;
+            }
+        }
+        System.out.println("Percent chance of attack: " +(100/numOfAttacks));
+        assertEquals(10, 100/numOfAttacks, 8);
+        
+    }
 
 }
 
