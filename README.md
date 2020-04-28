@@ -4,9 +4,8 @@
 **Screencast link:** linkgoeshere.com 
 
 **Design Patterns**
- > The following are the design patterns that I plan on implements in my Farm Design Assignment. 
 
-- Strategy Pattern: I used the strategy pattern to dynamically assign which product and animal makes. This implementation is used in the harvestProduct() method in the Animal.java class.
+**Strategy Pattern:** I used the strategy pattern to dynamically assign which product and animal makes. This implementation is used in the harvestProduct() method in the Animal.java class.
 
 *Requirements fulfilled by pattern:*
 - Animals are dynamically assigned a product using this pattern in the separate type of Animal classes (Cow.java, Pig.java, Chicken.java).
@@ -14,7 +13,7 @@
 - Animal product are sold for different prices depending on the product they are assigned eg. bacon is worth 7 dollars, and eggs are worth 2 dollars.
 
 
-- Observer Pattern: I used the observer pattern to observe the day/night cycles and dynamically update the life counter on animals to determine animal production age, product production, and when predators are out, when to harvest crops, etc.
+**Observer Pattern:** I used the observer pattern to observe the day/night cycles and dynamically update the life counter on animals to determine animal production age, product production, and when predators are out, when to harvest crops, etc.
 
 *Requirements fulfilled by pattern:*
 - The simulation should run on cycles. A cycle is considered to be of 2 parts - 1 day time and 1 night time.
@@ -23,7 +22,7 @@
 - Passive currency is earned with each new day (not night). This passive currency income is generated from selling crops or animal products, or both depending on your farm.
 
 
-- Factory Pattern: I plan on using this pattern to dynamically create Animals on each farm. This will greatly simplify my main method, and negate the need for lengthy if/else statements.
+**Factory Pattern:** I plan on using this pattern to dynamically create Animals on each farm. This will greatly simplify my main method, and negate the need for lengthy if/else statements.
 
 *Requirements fulfilled by pattern:*
 - Animal creation is handled entirely by the factory, with the exception of tests for purposes of testing correct animal creation. 
