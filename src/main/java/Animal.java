@@ -16,7 +16,6 @@ public abstract class Animal  implements Observer{
     private boolean hasProduct = false;
     public Produces produces;
     private double quality = 0;
-    private boolean isDay;
     
     /**
      * Method returns name.
@@ -47,7 +46,6 @@ public abstract class Animal  implements Observer{
      */
     protected void isBorn() {
         daysOld = 0;
-        this.isDay = true;
         DayCycle.register(this);
     }
     
@@ -116,7 +114,6 @@ public abstract class Animal  implements Observer{
                 hasProduct =  true;
             }
         }
-        isDay = Day;
         daysOld++; 
     }
     

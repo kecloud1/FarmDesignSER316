@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public class DayCycle implements Subject {
     
-    private static ArrayList<Observer> observers;
+    private static ArrayList<Observer> observers = new ArrayList<Observer>();
     private boolean isDay;
 
     public DayCycle() {
-        observers = new ArrayList<Observer>();
         isDay = true;
         notifyObserver();
     }
