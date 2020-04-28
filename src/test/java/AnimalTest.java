@@ -17,15 +17,6 @@ public class AnimalTest {
     Farm farm = new Farm(1);
     AnimalFactory factory = new AnimalFactory();
     
-    Animal cow = factory.makeAnimal("Cow");
-    Animal chicken = factory.makeAnimal("Chicken");
-    Animal pig = factory.makeAnimal("pig");
-    
-    MilkCow cowNotMadeInFactory = new MilkCow();
-    Chicken chickenNotMadeInFactory = new Chicken();
-    Pig pigNotMadeInFactory = new Pig();
-
-
     @Before
     public void setUp() throws Exception {
 
@@ -38,6 +29,14 @@ public class AnimalTest {
      * string is passed. 
      */
     public void testAnimalFactory() {
+        Animal cow = factory.makeAnimal("Cow");
+        Animal chicken = factory.makeAnimal("Chicken");
+        Animal pig = factory.makeAnimal("pig");
+        
+        final MilkCow cowNotMadeInFactory = new MilkCow();
+        final Chicken chickenNotMadeInFactory = new Chicken();
+        final Pig pigNotMadeInFactory = new Pig();
+        
         assertEquals("Cow", cow.getName());
         assertEquals("Chicken", chicken.getName());
         assertEquals("Pig", pig.getName());
@@ -190,10 +189,9 @@ public class AnimalTest {
      */
     @Test
     public void testPredator() {
-        Predator pred = new Predator();
         int numOfAttacks = 0;
         for (int i = 0; i < 100; i++) {
-            if (pred.attack()) {
+            if (new Predator().attack()) {
                 numOfAttacks++;
             }
         }

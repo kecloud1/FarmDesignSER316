@@ -43,6 +43,7 @@ mainClassName = 'main.java.Main'
   }
 
   tasks.withType(Checkstyle) {
+    exclude '**/main/java/Main.java'
     reports {
       html.enabled = true
       xml.enabled = false

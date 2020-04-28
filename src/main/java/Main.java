@@ -16,7 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Random rand = new Random();
-        int farmID = 2; 
+        int farmId = 2; 
         DayCycle dayCycle = new DayCycle(); 
         boolean isGameOver = false;
         ArrayList<Farm> farms = new ArrayList<Farm>();
@@ -29,9 +29,9 @@ public class Main {
         //Game loop. Game starts here.
         while (!isGameOver) {
             //New Day info
-            System.out.println("\nTodays is day " + (dayCycle.getDays()) +
-                    "\n# of farms owned: " + farms.size() + "." +
-                    "\nFunds in Bank: $" + Farm.getFunds() + "\n");
+            System.out.println("\nTodays is day " + (dayCycle.getDays()) 
+                    + "\n# of farms owned: " + farms.size() + "." 
+                    + "\nFunds in Bank: $" + Farm.getFunds() + "\n");
             
             //Get animal info for each farm and print to console
             for (Farm farm : farms) {
@@ -39,8 +39,9 @@ public class Main {
                 int numChick = farm.countChickens();
                 int numPig = farm.countPigs();
 
-                System.out.println("\nFarm #: " + farm.getName() + "\nNuber of Cows: " + numCow + 
-                        "\nNumber of Chickens: " + numChick + "\nNumber of Pigs: " + numPig + "\n");
+                System.out.println("\nFarm #: " + farm.getName() + "\nNuber of Cows: " + numCow 
+                        + "\nNumber of Chickens: " + numChick + "\nNumber of Pigs: " + numPig 
+                        + "\n");
             }
             
             //Sell product and gain passive income
@@ -59,22 +60,11 @@ public class Main {
             
             //Buy a new farm if all farms are upgraded and player has enough funds
             while (Farm.getFunds() >= 10000) {
-                farms.add(new Farm (farmID));
+                farms.add(new Farm(farmId));
                 Farm.addFunds(-10000);
-                farmID++;
+                farmId++;
                 System.out.println("Congratulations! You bought a new farm!");
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             //day over
             dayCycle.switchToNight();
@@ -86,19 +76,19 @@ public class Main {
                     System.out.println("Oh no! A predator attacked your animals! Your vet bill is: "
                             + priceOfAttack);
                     Farm.addFunds(-priceOfAttack);
-                 }
+                }
                 
-                /*Check animals for sickness. Animals have a 5% chance of getting sick, and once they do,
-                the animal dies.*/
+                /*Check animals for sickness. Animals have a 5% chance of getting sick, and once 
+                 * they do, the animal dies.*/
                 for (Farm farm : farms) {
                     ArrayList<Animal> list = farm.getAnimals();
                     for (int i = 0; i < list.size(); i++) {
                         if (list.get(i).isSick()) {
-                            System.out.println("You lost an animal to sickness on farm #" + farm.getName() + ". "
-                                    + "The animal you lost was a " + list.get(i).getName());
+                            System.out.println("You lost an animal to sickness on farm #" 
+                                    + farm.getName() + ". " + "The animal you lost was a " 
+                                    + list.get(i).getName());
                             farm.getAnimals().remove(i);
                         }
-    
                     }
                 }
                 
@@ -118,10 +108,11 @@ public class Main {
             }
             
             //Animals have a chance to birth new animals every four days per assignment sheet.
-            if (dayCycle.getDays()%4 == 0)
+            if (dayCycle.getDays() % 4 == 0) {
                 for (Farm farm : farms) {
                     farm.doTheHankyPanky();
                 }
+            }
             
             //end of loop. Check if game won.
             isGameOver = isGameOver(farms);
