@@ -33,7 +33,6 @@ public class Main {
         
         //Game loop. Game starts here.
         while (!isGameOver) {
-            dayCycle.switchToDay();
             //New Day info
             System.out.println("\nTodays is day " + (dayCycle.getDays()) +
                     "\n# of farms owned: " + farms.size() + "." +
@@ -123,7 +122,7 @@ public class Main {
                 }
             }
             
-            //Animals have a chance to birth new animals
+            //Animals have a chance to birth new animals every four days per assignment sheet.
             if (dayCycle.getDays()%4 == 0)
                 for (Farm farm : farms) {
                     farm.doTheHankyPanky();
@@ -131,6 +130,8 @@ public class Main {
             
             //end of loop. Check if game won.
             isGameOver = isGameOver(farms);
+            
+            dayCycle.switchToDay();
         }
         
         //Message when game is over.
