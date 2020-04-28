@@ -12,6 +12,7 @@ public abstract class Animal  implements Observer{
     private Random rand = new Random();
     private String name;
     private int daysOld;
+    private int daysOldWhenHarvested;
     private boolean isProducingAge = false;
     private boolean hasProduct = false;
     public Produces produces;
@@ -41,12 +42,12 @@ public abstract class Animal  implements Observer{
         return daysOld;
     }
     
+    
     /**
      * Method is called when Animal object is created and begins counter for how old animal is.
      */
     protected void isBorn() {
         daysOld = 0;
-        DayCycle.register(this);
     }
     
     /**
@@ -102,21 +103,68 @@ public abstract class Animal  implements Observer{
         }
     }
     
-    public abstract void harvestProduct();
+    /**
+     * To be implemented in individual animal classes, because each product can 
+     * be sold for a certain price. 
+     */
+    public void harvestProduct() {
+        if (hasProduct()) {
+            this.setHasProduct(false);
+            this.setDaysOldOnLastHarvest(getAge());
+            if (this.getProduct().equalsIgnoreCase("Milk")) {
+                Farm.addFunds(5);
+            }
+            if (this.getProduct().equalsIgnoreCase("Egg")) {
+                Farm.addFunds(2);
+            }
+            if (this.getProduct().equalsIgnoreCase("Bacon")) {
+                Farm.addFunds(7);
+            }
+        return;
+        }
+    }
+    /**
+     * Method returns daysOldWhenHarvested
+     * @return daysOldWhenHarvested - all in the name
+     */
+    public int getDaysOldOnLastHarvest() {
+        return daysOldWhenHarvested;
+    }
     
+    /**
+     * Method returns daysOldWhenHarvested
+     * @return daysOldWhenHarvested - all in the name
+     */
+    public void setDaysOldOnLastHarvest(int i) {
+        daysOldWhenHarvested = i;
+    }
+    
+    /**
+     * Method checks if animal has product for harvest
+     * @return
+     */
     public boolean hasProduct() {
         return hasProduct;
     }
     
+    /**
+     * Method used to update observers of the DayCycle
+     */
     public void update(boolean Day) { 
         if (Day) {
-            if (daysOld > 3) {
+            //Animal product reoccurs every two days, and only if the animal is 
+            //at least 3 days old.
+            if (daysOld > 3 && daysOld-daysOldWhenHarvested >= 2) {
                 hasProduct =  true;
             }
         }
-        daysOld++; 
+        daysOld++;
     }
     
+    /**
+     * Animal has 5% chance of getting sick each night.
+     * @return
+     */
     public boolean isSick() {
         if (rand.nextInt(100) >= 95) {
             return true;

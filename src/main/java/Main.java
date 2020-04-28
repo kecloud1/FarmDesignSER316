@@ -52,7 +52,7 @@ public class Main {
                 //Sell animal product
                 for (Animal animal : farm.getAnimals()) {
                     animal.harvestProduct();
-                }                
+                }
             }
             
             //Upgrade farms if enough money achieved

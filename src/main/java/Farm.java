@@ -13,7 +13,7 @@ public class Farm {
 
     
     private int id;
-    private static int funds = 500; //each player starts with $500
+    private static int funds = 500; //each farm starts with $500
     private int size;
 
     private int farmerCount = 0;

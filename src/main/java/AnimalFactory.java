@@ -13,13 +13,13 @@ public class AnimalFactory {
      * @return animal object, depending on abbreviation passed to method.
      */
     public Animal makeAnimal(String animalToCreate) {
-        if (animalToCreate.equals("Cow")) {
+        if (animalToCreate.equalsIgnoreCase("Cow")) {
             return new MilkCow();
         }
-        if (animalToCreate.equals("Chicken")) {
+        if (animalToCreate.equalsIgnoreCase("Chicken")) {
             return new Chicken();
         }
-        if (animalToCreate.equals("Pig")) {
+        if (animalToCreate.equalsIgnoreCase("Pig")) {
             return new Pig();
         }
         return null;

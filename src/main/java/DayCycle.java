@@ -6,9 +6,11 @@ public class DayCycle implements Subject {
     
     private static ArrayList<Observer> observers = new ArrayList<Observer>();
     private boolean isDay;
+    private int days = 0; 
 
     public DayCycle() {
         isDay = true;
+        days = 1;
         notifyObserver();
     }
 
@@ -31,6 +33,7 @@ public class DayCycle implements Subject {
 
     public void switchToDay() {
         isDay = true;
+        days++;
         notifyObserver();
     }
     
@@ -46,4 +49,7 @@ public class DayCycle implements Subject {
         return false;
     }
     
+    public int getDays() {
+    return days;
+    }
 }

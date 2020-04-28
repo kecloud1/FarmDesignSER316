@@ -14,13 +14,7 @@ public class MilkCow extends Animal implements Observer{
         this.isBorn();
         this.setName("Cow");
         produces = new ProducesMilk();
+        DayCycle.register(this);
     }
     
-    public void harvestProduct() {
-    if (hasProduct()) {
-        this.setHasProduct(false);
-        Farm.addFunds(5);
-    }
-    return;
-    }
 }

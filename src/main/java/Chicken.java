@@ -13,13 +13,6 @@ public class Chicken extends Animal implements Observer{
         this.isBorn();
         this.setName("Chicken");
         produces = new ProducesEggs(); //Strategy pattern    
+        DayCycle.register(this);
         }
-    
-    public void harvestProduct() {
-    if (hasProduct()) {
-        this.setHasProduct(false);
-        Farm.addFunds(2);
-    }
-    return;
-    }
 }
