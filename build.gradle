@@ -30,7 +30,7 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'main.mainMethod.Main'
+mainClassName = 'main.java.Main'
 
 ///////////////////////////////////////////////////////////////////////
 // Configure Checkstyle
@@ -74,7 +74,7 @@ jacocoTestReport {
 }
 test {
     jacoco {
-        excludes = ['main.mainMethod']
+        excludes = ['main.java.Main']
     }
 }
 test.finalizedBy(project.tasks.jacocoTestReport)
