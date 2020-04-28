@@ -1,7 +1,12 @@
-package main.java;
+package main.mainMethod;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import main.java.Animal;
+import main.java.DayCycle;
+import main.java.Farm;
+import main.java.Predator;
 
 /**
  * This class serves as an entry point for the program. This class serves as a control for the 
@@ -16,7 +21,6 @@ public class Main {
      */
     public static void main(String[] args) {
         Random rand = new Random();
-        int days = 0;
         int farmID = 2; 
         DayCycle dayCycle = new DayCycle(); 
         boolean isGameOver = false;
@@ -29,10 +33,8 @@ public class Main {
         
         //Game loop. Game starts here.
         while (!isGameOver) {
-            dayCycle.switchToDay();
-            days++;
             //New Day info
-            System.out.println("\nTodays is day " + (days) +
+            System.out.println("\nTodays is day " + (dayCycle.getDays()) +
                     "\n# of farms owned: " + farms.size() + "." +
                     "\nFunds in Bank: $" + Farm.getFunds() + "\n");
             
@@ -52,7 +54,7 @@ public class Main {
                 //Sell animal product
                 for (Animal animal : farm.getAnimals()) {
                     animal.harvestProduct();
-                }                
+                }
             }
             
             //Upgrade farms if enough money achieved
@@ -82,8 +84,8 @@ public class Main {
             //day over
             dayCycle.switchToNight();
             
-            //Character immune to disasters until at least 10 days old
-            if (days > 10) {
+            //Character immune to disasters until day 10.
+            if (dayCycle.getDays() > 10) {
                 if (Predator.attack()) {
                     int priceOfAttack = rand.nextInt(1000);
                     System.out.println("Oh no! A predator attacked your animals! Your vet bill is: "
@@ -120,13 +122,16 @@ public class Main {
                 }
             }
             
-            //Animals have a chance to birth new animals
-            for (Farm farm : farms) {
-                farm.doTheHankyPanky();
-            }
+            //Animals have a chance to birth new animals every four days per assignment sheet.
+            if (dayCycle.getDays()%4 == 0)
+                for (Farm farm : farms) {
+                    farm.doTheHankyPanky();
+                }
             
             //end of loop. Check if game won.
             isGameOver = isGameOver(farms);
+            
+            dayCycle.switchToDay();
         }
         
         //Message when game is over.

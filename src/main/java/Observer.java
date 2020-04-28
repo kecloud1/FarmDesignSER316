@@ -1,7 +1,7 @@
 package main.java;
 
 /**
- * Used to implement Observer pattern
+ * Used to implement Observer pattern.
  * @author kelseycloud
  *
  */

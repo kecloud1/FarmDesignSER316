@@ -8,14 +8,14 @@ import java.util.Random;
  * @author kelseycloud
  *
  */
-public abstract class Animal  implements Observer{
+public abstract class Animal  implements Observer {
     private Random rand = new Random();
     private String name;
     private int daysOld;
+    private int daysOldWhenHarvested;
     private boolean isProducingAge = false;
     private boolean hasProduct = false;
     public Produces produces;
-    private double quality = 0;
     
     /**
      * Method returns name.
@@ -41,12 +41,12 @@ public abstract class Animal  implements Observer{
         return daysOld;
     }
     
+    
     /**
      * Method is called when Animal object is created and begins counter for how old animal is.
      */
     protected void isBorn() {
         daysOld = 0;
-        DayCycle.register(this);
     }
     
     /**
@@ -54,7 +54,7 @@ public abstract class Animal  implements Observer{
      * @return isProducingAge - true if greater than 3 days old, false if otherwise.
      */
     public boolean isProducingAge() {
-        if (daysOld > 3) {
+        if (daysOld >= 3) {
             isProducingAge = true;
         }
         return isProducingAge;
@@ -70,7 +70,7 @@ public abstract class Animal  implements Observer{
     
     /**
      * Method sets the product that the animal produces.
-     * @param product - type of product animal produces
+     * @param bool - type of product animal produces
      */
     public void setHasProduct(boolean bool) {
         hasProduct = bool;
@@ -85,38 +85,68 @@ public abstract class Animal  implements Observer{
     }
     
     /**
-     * Method returns the quality of the animal.
-     * @return quality - a random double between 0-10
+     * To be implemented in individual animal classes, because each product can 
+     * be sold for a certain price. 
      */
-    public double getQuality() {
-        return quality;
-    }
-    
-    /**
-     * Method can only be called when an animal is born and sets their quality as a double between 
-     * 1-10.
-     */
-    private void setQuality() {
-        while (quality < 1) {
-            quality = new Random().nextInt(10);
+    public void harvestProduct() {
+        if (hasProduct()) {
+            this.setHasProduct(false);
+            this.setDaysOldOnLastHarvest(getAge());
+            if (this.getProduct().equalsIgnoreCase("Milk")) {
+                Farm.addFunds(5);
+            }
+            if (this.getProduct().equalsIgnoreCase("Egg")) {
+                Farm.addFunds(2);
+            }
+            if (this.getProduct().equalsIgnoreCase("Bacon")) {
+                Farm.addFunds(7);
+            }
+            return;
         }
     }
     
-    public abstract void harvestProduct();
+    /**
+     * Method returns daysOldWhenHarvested.
+     * @return daysOldWhenHarvested - all in the name
+     */
+    public int getDaysOldOnLastHarvest() {
+        return daysOldWhenHarvested;
+    }
     
+    /**
+     * Method returns daysOldWhenHarvested.
+     * @param i - how old the animal was when last harvested.
+     */
+    public void setDaysOldOnLastHarvest(int i) {
+        daysOldWhenHarvested = i;
+    }
+    
+    /**
+     * Method checks if animal has product for harvest.
+     * @return
+     */
     public boolean hasProduct() {
         return hasProduct;
     }
     
-    public void update(boolean Day) { 
-        if (Day) {
-            if (daysOld > 3) {
+    /**
+     * Method used to update observers of the DayCycle.
+     */
+    public void update(boolean day) { 
+        if (day) {
+            daysOld++;
+            //Animal product reoccurs every two days, and only if the animal is 
+            //at least 3 days old.
+            if (daysOld >= 3 && daysOld - daysOldWhenHarvested >= 2) {
                 hasProduct =  true;
             }
         }
-        daysOld++; 
     }
     
+    /**
+     * Animal has 5% chance of getting sick each night.
+     * @return
+     */
     public boolean isSick() {
         if (rand.nextInt(100) >= 95) {
             return true;
