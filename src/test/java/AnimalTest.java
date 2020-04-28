@@ -64,9 +64,6 @@ public class AnimalTest {
     }
     
     @Test
-    /**
-     * 
-     */
     public void testMilkCowClass() {
         DayCycle day = new DayCycle();
         MilkCow testCow = new MilkCow();
@@ -98,9 +95,6 @@ public class AnimalTest {
     }
     
     @Test
-    /**
-     * 
-     */
     public void testChickenClass() {
         DayCycle day = new DayCycle();
         Chicken testChick = new Chicken();
@@ -133,9 +127,6 @@ public class AnimalTest {
     }
     
     @Test
-    /**
-     * 
-     */
     public void testPigClass() {
         DayCycle day = new DayCycle();
         Pig testPig = new Pig();

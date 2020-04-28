@@ -21,7 +21,6 @@ public class Main {
      */
     public static void main(String[] args) {
         Random rand = new Random();
-        int days = 0;
         int farmID = 2; 
         DayCycle dayCycle = new DayCycle(); 
         boolean isGameOver = false;
@@ -35,9 +34,8 @@ public class Main {
         //Game loop. Game starts here.
         while (!isGameOver) {
             dayCycle.switchToDay();
-            days++;
             //New Day info
-            System.out.println("\nTodays is day " + (days) +
+            System.out.println("\nTodays is day " + (dayCycle.getDays()) +
                     "\n# of farms owned: " + farms.size() + "." +
                     "\nFunds in Bank: $" + Farm.getFunds() + "\n");
             
@@ -87,8 +85,8 @@ public class Main {
             //day over
             dayCycle.switchToNight();
             
-            //Character immune to disasters until at least 10 days old
-            if (days > 10) {
+            //Character immune to disasters until day 10.
+            if (dayCycle.getDays() > 10) {
                 if (Predator.attack()) {
                     int priceOfAttack = rand.nextInt(1000);
                     System.out.println("Oh no! A predator attacked your animals! Your vet bill is: "
@@ -126,9 +124,10 @@ public class Main {
             }
             
             //Animals have a chance to birth new animals
-            for (Farm farm : farms) {
-                farm.doTheHankyPanky();
-            }
+            if (dayCycle.getDays()%4 == 0)
+                for (Farm farm : farms) {
+                    farm.doTheHankyPanky();
+                }
             
             //end of loop. Check if game won.
             isGameOver = isGameOver(farms);
