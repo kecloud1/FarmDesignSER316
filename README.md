@@ -1,5 +1,6 @@
 # FarmDesignSER316
-> This simulator is dedicated to the Häge family and to Onkel Christian and Tante Ute, hardworking German farmers and part of our extended family. Visit the family farm at their website www.familie-haege.de/ or on Instagram @biohof.haege
+> This project was developed as part of an assignment I completed for my Software Enterprise: Construction class. The objective of this class was to exercise best practices in software construction in the context of a team project, including refactoring, defensive programming, unit testing, and configuration and release management.
+>This simulator is dedicated to the Häge family and to Onkel Christian and Tante Ute, hardworking German farmers and part of our extended family. Visit the family farm at their website www.familie-haege.de/ or on Instagram @biohof.haege
 
 **Screencast link:** https://youtu.be/nXLVAA6HD5U 
 
